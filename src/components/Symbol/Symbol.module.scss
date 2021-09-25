@@ -1,0 +1,38 @@
+@import "utilities/_variables.module.scss";
+
+.symbolContainer {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 80%;
+  margin: 0.5% auto;
+  list-style: none;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s;
+  border-radius: 5px;
+  letter-spacing: 2px;
+
+  &:hover {
+    transform: scale(1.1);
+    z-index: 100;
+    background-color: $main;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: $breakpoint-tablet) {
+    font-size: 12px;
+  }
+
+  .errorMessage {
+    display: flex;
+    color: $red;
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  .serviceName {
+    margin-left: 10px;
+    text-transform: capitalize;
+  }
+}

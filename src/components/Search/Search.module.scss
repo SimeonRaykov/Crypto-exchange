@@ -1,0 +1,56 @@
+@import "utilities/_variables.module.scss";
+
+.searchContainer {
+  width: 70%;
+  margin: 0 auto;
+
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    .input {
+      height: 30px;
+      border: none;
+      border-bottom: 1px solid black;
+      &:focus {
+        outline: none;
+      }
+    }
+    .searchBtn {
+      width: 50%;
+      min-width: 100px;
+      height: 45px;
+      margin: 2% auto;
+      font-weight: 500;
+      border: none;
+      background-color: $main;
+      color: white;
+      border-radius: 35px;
+      font-size: 20px;
+      cursor: pointer;
+      &:hover {
+        background-color: $yellow;
+        color: black;
+      }
+    }
+  }
+  .filterContainer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .modalBody {
+    text-align: center;
+    font-size: 16px;
+    white-space: nowrap;
+
+    .trade {
+      margin: 3% 0;
+    }
+  }
+
+  .errorDetails {
+    color: $red;
+  }
+}

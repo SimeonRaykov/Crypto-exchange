@@ -1,0 +1,13 @@
+.filterContainer {
+  display: flex;
+  margin-top: 2%;
+  cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
+
+  .title {
+    margin-right: 10px;
+  }
+}
