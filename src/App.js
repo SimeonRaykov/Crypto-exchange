@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Search from "components/Search/Search";
 
@@ -6,11 +6,11 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Search />
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={Search} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

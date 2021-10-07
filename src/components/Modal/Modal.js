@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 
 import styles from "./Modal.module.scss";
 
-function Modal({ children, show, title, handleClose }) {
-  if (!show) return null;
+function Modal({ children, title, handleClose }) {
 
   return (
     <div className={styles.modalBackground}>

@@ -3,8 +3,7 @@ const backendUrls = {
         get: {
             binance: (symbol) => `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`,
             huobi: (symbol) => `https://api.huobi.pro/market/detail/merged?symbol=${symbol}`,
-            kraken: (symbol) => `https://api.kraken.com/0/public/Ticker?pair=${symbol}`,
-            //NB bitfinex API needs to be called from a server
+            kraken: (symbol) => `https://api.kraken.com/0/public/Ticker?pair=${symbol}`
         },
     },
     exchanges: {

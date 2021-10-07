@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import backendUrls from "api/backendUrls";
 import {
@@ -46,9 +47,6 @@ function Search() {
   const [symbols, setSymbols] = useState(initialSymbolsState);
   const [symbolsLoading, setSymbolsLoading] = useState(false);
   const [selectedSymbolData, setSelectedSymbolData] = useState({});
-  const [showDetailsModal, setShowDetailsModal] = useState(() =>
-    shouldOpenDetailsModal(window.location.pathname)
-  );
   const [priceFilter, setPriceFilter] = useState(FILTER_STATES.ASC);
 
   const getHuobiSymbols = useCallback(async () => {
@@ -226,7 +224,6 @@ function Search() {
   };
 
   const handleSymbolClick = (serviceName) => {
-    setShowDetailsModal(true);
     history.push(`${path}/details-${serviceName}`);
 
     getDetailsData(serviceName);
@@ -234,7 +231,6 @@ function Search() {
 
   const handleClose = () => {
     history.push(`/${getSymbolFromPathName(window.location.pathname)}`);
-    setShowDetailsModal(false);
   };
 
   const handlePriceFilter = () => {
@@ -302,25 +298,28 @@ function Search() {
           )}
         </ul>
       ) : null}
-      <Modal
-        show={showDetailsModal}
-        title={!selectedSymbolData.error ? `Last ${LIMIT_BIDS} bids` : ""}
-        handleClose={handleClose}
-      >
-        {selectedSymbolData.error ? (
-          <div className={styles.errorDetails}>An error occured</div>
-        ) : (
-          <div className={styles.modalBody}>
-            {selectedSymbolData.data?.map(({ price, quantity }) => (
-              <div className={styles.trade} key={`${price} - ${quantity}`}>
-                <div>
-                  Trade done: price: {price}, quantity: {quantity} units
-                </div>
+      <Switch>
+        <Route path={`/${search}/details:symbolName`}>
+          <Modal
+            title={!selectedSymbolData.error ? `Last ${LIMIT_BIDS} bids` : ""}
+            handleClose={handleClose}
+          >
+            {selectedSymbolData.error ? (
+              <div className={styles.errorDetails}>An error occured</div>
+            ) : (
+              <div className={styles.modalBody}>
+                {selectedSymbolData.data?.map(({ price, quantity }) => (
+                  <div className={styles.trade} key={`${price} - ${quantity}`}>
+                    <div>
+                      Trade done: price: {price}, quantity: {quantity} units
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
-      </Modal>
+            )}
+          </Modal>
+        </Route>
+      </Switch>
     </div>
   );
 }

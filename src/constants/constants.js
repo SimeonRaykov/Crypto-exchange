@@ -1,4 +1,4 @@
-export const REFRESH_TIME_MARKETS = 20_000;
+export const REFRESH_TIME_MARKETS = 200_0000;
 export const LIMIT_BIDS = 5;
 export const CRYPTO_EXCHANGES = {
     HUOBI: "HUOBI",
